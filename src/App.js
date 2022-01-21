@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import AppRouter from './components/AppRouter'
+import { useDispatch } from 'react-redux'
+import { allActionCreators } from './store/reducers/action-creators'
+import Header from './components/Header'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        // if (localStorage.getItem('token')) {
+        dispatch(allActionCreators.auth())
+        // }
+    }, [])
+
+    return (
+        <>
+            <Header />
+            <AppRouter />
+        </>
+    )
 }
 
-export default App;
+export default App
